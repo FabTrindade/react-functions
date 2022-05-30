@@ -1,6 +1,6 @@
 import { Component, Fragment } from 'react';
 import './App.css';
-import RegistrationForm from './components/RegistrationForm';
+import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 
 class App extends Component {
   render(){
