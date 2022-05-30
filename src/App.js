@@ -1,14 +1,16 @@
+import { Container, Typography } from '@mui/material';
 import { Component, Fragment } from 'react';
 import './App.css';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
+import '@fontsource/roboto/400.css';
 
 class App extends Component {
   render(){
-    return (
-        <Fragment>
-          <h1>Registration Form</h1>
+    return (      
+        <Container component="article" maxWidth="sm">
+          <Typography variant='h4' component='h1' align='center' color='GrayText'>Registration Form</Typography>
           <RegistrationForm/>
-        </Fragment>
+        </Container>
         
     );
   }
