@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React from 'react';
 
 function RegistrationForm(){
@@ -18,7 +19,7 @@ function RegistrationForm(){
             <label>Newslatter</label>
             <input type="checkbox"/>
 
-            <button type='submit'>Submit</button>
+            <Button type='submit' variant="contained" color="primary">Submit</Button>
 
         </form>
     )
