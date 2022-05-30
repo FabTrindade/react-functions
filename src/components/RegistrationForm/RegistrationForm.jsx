@@ -1,24 +1,16 @@
-import { Button } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React from 'react';
 
 function RegistrationForm(){
     return (
         <form>
-            <label>Name</label>
-            <input type="text"/>
+            <TextField id='nome' label='Name' variant='outlined' fullWidth/>
+            <TextField id='lastName' label='LastName' variant='outlined' fullWidth/>
+            <TextField id='idCard' label='ID Card' variant='outlined' fullWidth/>
 
-            <label>Last name</label>
-            <input type="text"/>
-
-            <label>ID Card</label>
-            <input type="text"/>
-
-            <label>Promotions</label>
-            <input type="checkbox"/>
-
-            <label>Newslatter</label>
-            <input type="checkbox"/>
-
+            <FormControlLabel control={<Checkbox/>} label="Promotions"/>
+            <FormControlLabel control={<Checkbox/>} label="Newslatter"/>
+            
             <Button type='submit' variant="contained" color="primary">Submit</Button>
 
         </form>
