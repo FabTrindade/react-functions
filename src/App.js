@@ -1,5 +1,5 @@
 import { Container, Typography } from '@mui/material';
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
 import './App.css';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import '@fontsource/roboto/400.css';
