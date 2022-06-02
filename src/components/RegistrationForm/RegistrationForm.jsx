@@ -2,18 +2,17 @@ import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
 function RegistrationForm() {
-    const [name, setName] = useState();
-    const [lastName, setLastName] = useState();
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [idCard, setidCard] = useState("");
+    const [promotions, setPromotions] = useState(false);
+    const [newsLatter, setNewsLatter] = useState(false);
     return (
         <form>
             <TextField
                 value={name}
                 onChange={(event) => {
-                    let tmpName = event.target.value;
-                    if (tmpName.length >= 3) {
-                        tmpName = tmpName.substring(0,3);
-                    }
-                    setName(tmpName);
+                    setName(event.target.value);
                 }}
                 id='nome'
                 label='Name'
@@ -34,14 +33,36 @@ function RegistrationForm() {
                 fullWidth />
 
             <TextField
+                value={idCard}
+                onChange={(event) => {
+                    setidCard(event.target.value);
+                }}
                 id='idCard'
                 label='ID Card'
                 variant='outlined'
                 margin='normal'
                 fullWidth />
 
-            <FormControlLabel control={<Checkbox />} label="Promotions" />
-            <FormControlLabel control={<Checkbox />} label="Newslatter" />
+            <FormControlLabel
+                label="Promotions"
+                control={
+                    <Checkbox
+                        checked={promotions}
+                        onChange={(event) => {
+                            setPromotions(event.target.checked);
+                        }}
+                    />}                
+            />
+            <FormControlLabel
+                label="Newslatter"
+                control={
+                    <Checkbox
+                        checked={newsLatter}
+                        onChange={(event) => {
+                            setNewsLatter(event.target.checked);
+                        }}
+                    />}
+            />
 
             <Button type='submit' variant="contained" color="primary">Submit</Button>
 
