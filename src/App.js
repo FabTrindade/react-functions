@@ -9,15 +9,24 @@ class App extends Component {
     return (      
         <Container component="article" maxWidth="sm">
           <Typography variant='h4' component='h1' align='center' color='GrayText'>Registration Form</Typography>
-          <RegistrationForm aoEnviar={aoEnviar}/>
+          <RegistrationForm atSend={atSend} validateIdCard={validateIdCard}/>
         </Container>
         
     );
   }
 }
 
-function aoEnviar(dados){
-  console.log(dados);
+function atSend(data){
+  console.log(data);
+}
+
+function validateIdCard(idCard){
+  if (idCard.length !== 11){
+    return {valid: false , text: "ID Card must have 11 digits!"}
+  }else{
+    return {valid: true, text: ""}
+  }
+
 }
 
 

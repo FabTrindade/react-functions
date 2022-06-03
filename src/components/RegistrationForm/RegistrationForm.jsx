@@ -1,18 +1,19 @@
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
-function RegistrationForm({aoEnviar}) {
+function RegistrationForm({ atSend, validateIdCard }) {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [idCard, setidCard] = useState("");
     const [promotions, setPromotions] = useState(false);
     const [newsLatter, setNewsLatter] = useState(false);
+    const [error, setError] = useState({ idCard: { valid: true, text: "" } });
     return (
         <form
             onSubmit={(event) => {
                 event.preventDefault();
-                aoEnviar({name, lastName, idCard, promotions, newsLatter});
-                }
+                atSend({ name, lastName, idCard, promotions, newsLatter });
+            }
             }
         >
             <TextField
@@ -43,6 +44,13 @@ function RegistrationForm({aoEnviar}) {
                 onChange={(event) => {
                     setidCard(event.target.value);
                 }}
+                onBlur={(event) => {
+                    const isValid = validateIdCard(idCard);
+                    setError({ idCard: isValid })
+                }
+                }
+                error={!error.idCard.valid}
+                helperText={error.idCard.text}
                 id='idCard'
                 label='ID Card'
                 variant='outlined'
