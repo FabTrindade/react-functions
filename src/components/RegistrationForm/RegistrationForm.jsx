@@ -1,14 +1,20 @@
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
-function RegistrationForm() {
+function RegistrationForm({aoEnviar}) {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [idCard, setidCard] = useState("");
     const [promotions, setPromotions] = useState(false);
     const [newsLatter, setNewsLatter] = useState(false);
     return (
-        <form>
+        <form
+            onSubmit={(event) => {
+                event.preventDefault();
+                aoEnviar({name, lastName, idCard, promotions, newsLatter});
+                }
+            }
+        >
             <TextField
                 value={name}
                 onChange={(event) => {
@@ -51,7 +57,7 @@ function RegistrationForm() {
                         onChange={(event) => {
                             setPromotions(event.target.checked);
                         }}
-                    />}                
+                    />}
             />
             <FormControlLabel
                 label="Newslatter"

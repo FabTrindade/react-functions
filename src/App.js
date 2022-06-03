@@ -9,11 +9,16 @@ class App extends Component {
     return (      
         <Container component="article" maxWidth="sm">
           <Typography variant='h4' component='h1' align='center' color='GrayText'>Registration Form</Typography>
-          <RegistrationForm/>
+          <RegistrationForm aoEnviar={aoEnviar}/>
         </Container>
         
     );
   }
 }
+
+function aoEnviar(dados){
+  console.log(dados);
+}
+
 
 export default App;
