@@ -1,1 +1,1 @@
-# React functions study.
+# React functional components study using a reusable form.
