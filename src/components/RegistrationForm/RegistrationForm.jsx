@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 import UserData from '../UserData';
 import AddressData from './AddressData';
@@ -6,23 +5,21 @@ import PersonalData from './PersonalData';
 
 function RegistrationForm({ atSend, validateIdCard }) {
 
-    const [step, setStep] = useState(2);
+    const [step, setStep] = useState(0);
 
-    function currentForm(step){
-        switch (step) {
-            case 0:
-                return <UserData />;
-            case 1:
-                return <PersonalData atSend={atSend} validateIdCard={validateIdCard} />;
-            case 2:
-                return <AddressData />;
-            default:
-                return <Typography>Error at select form.</Typography>
-        }
+    const forms=[
+        <UserData atSend={next}/>,
+        <PersonalData atSend={next} validateIdCard={validateIdCard} />,
+        <AddressData atSend={atSend}/>
+    ]
+
+    function next(){
+        setStep(step+1);
     }
+
     return (
         <>
-            {currentForm(step)}
+            {forms[step]}
         </>
     )
 }
