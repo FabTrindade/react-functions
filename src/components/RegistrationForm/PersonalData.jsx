@@ -1,13 +1,21 @@
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
-function PersonalData({ atSend, validateIdCard }) {
+function PersonalData({ atSend, validation }) {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [idCard, setidCard] = useState("");
     const [promotions, setPromotions] = useState(false);
     const [newsLatter, setNewsLatter] = useState(false);
     const [error, setError] = useState({ idCard: { valid: true, text: "" } });
+
+    function validateField(event) {
+        const{name, value} = event.target;
+        const newState = {...error}
+        newState[name] = validation[name](value); 
+        setError(newState);
+    }
+
     return (
         <form
             onSubmit={(event) => {
@@ -44,11 +52,8 @@ function PersonalData({ atSend, validateIdCard }) {
                 onChange={(event) => {
                     setidCard(event.target.value);
                 }}
-                onBlur={(event) => {
-                    const isValid = validateIdCard(idCard);
-                    setError({ idCard: isValid })
-                }
-                }
+                onBlur={validateField}
+                name='idCard'
                 error={!error.idCard.valid}
                 helperText={error.idCard.text}
                 id='idCard'

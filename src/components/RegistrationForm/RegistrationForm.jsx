@@ -4,7 +4,7 @@ import UserData from '../UserData';
 import AddressData from './AddressData';
 import PersonalData from './PersonalData';
 
-function RegistrationForm({ atSend, validateIdCard }) {
+function RegistrationForm({ atSend, validation }) {
 
     const [step, setStep] = useState(0);
     const [data, setData] = useState({});
@@ -16,7 +16,7 @@ function RegistrationForm({ atSend, validateIdCard }) {
     })
     const forms = [
         <UserData atSend={collectData} />,
-        <PersonalData atSend={collectData} validateIdCard={validateIdCard} />,
+        <PersonalData atSend={collectData} validation={validation} />,
         <AddressData atSend={collectData} />,
         <Typography variant='h5'>Thanks for signing up!</Typography>
     ]

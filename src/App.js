@@ -3,13 +3,14 @@ import { Component } from 'react';
 import './App.css';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import '@fontsource/roboto/400.css';
+import { validateIdCard, validatePassword } from './models/Registration';
 
 class App extends Component {
   render(){
     return (      
         <Container component="article" maxWidth="sm">
           <Typography variant='h4' component='h1' align='center' color='GrayText'>Registration Form</Typography>
-          <RegistrationForm atSend={atSend} validateIdCard={validateIdCard}/>
+          <RegistrationForm atSend={atSend} validation={{idCard: validateIdCard, password: validatePassword}}/>
         </Container>
         
     );
@@ -18,15 +19,6 @@ class App extends Component {
 
 function atSend(data){
   console.log(data);
-}
-
-function validateIdCard(idCard){
-  if (idCard.length !== 11){
-    return {valid: false , text: "ID Card must have 11 digits!"}
-  }else{
-    return {valid: true, text: ""}
-  }
-
 }
 
 
