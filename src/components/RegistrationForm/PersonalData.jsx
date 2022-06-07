@@ -7,20 +7,34 @@ function PersonalData({ atSend, validation }) {
     const [idCard, setidCard] = useState("");
     const [promotions, setPromotions] = useState(false);
     const [newsLatter, setNewsLatter] = useState(false);
-    const [error, setError] = useState({ idCard: { valid: true, text: "" } });
+    const [error, setError] = useState({
+         idCard: { valid: true, text: "" }, 
+         name: { valid: true, text: "" }
+        });
 
     function validateField(event) {
-        const{name, value} = event.target;
-        const newState = {...error}
-        newState[name] = validation[name](value); 
+        const { name, value } = event.target;
+        const newState = { ...error }
+        newState[name] = validation[name](value);
         setError(newState);
+    }
+
+    function canSend() {
+        for (let field in error) {
+            if (!error[field].valid) {
+                return false;
+            }
+        }
+        return true;
     }
 
     return (
         <form
             onSubmit={(event) => {
                 event.preventDefault();
-                atSend({ name, lastName, idCard, promotions, newsLatter });
+                if (canSend()) {
+                    atSend({ name, lastName, idCard, promotions, newsLatter });
+                }
             }
             }
         >
@@ -29,7 +43,11 @@ function PersonalData({ atSend, validation }) {
                 onChange={(event) => {
                     setName(event.target.value);
                 }}
-                id='nome'
+                name='name'
+                onBlur={validateField}
+                error ={!error.name.valid}
+                helperText={error.name.text}
+                id='name'
                 label='Name'
                 variant='outlined'
                 margin='normal'

@@ -6,18 +6,22 @@ import '@fontsource/roboto/400.css';
 import { validateIdCard, validatePassword } from './models/Registration';
 
 class App extends Component {
-  render(){
-    return (      
-        <Container component="article" maxWidth="sm">
-          <Typography variant='h4' component='h1' align='center' color='GrayText'>Registration Form</Typography>
-          <RegistrationForm atSend={atSend} validation={{idCard: validateIdCard, password: validatePassword}}/>
-        </Container>
-        
+  render() {
+    return (
+      <Container component="article" maxWidth="sm">
+        <Typography variant='h4' component='h1' align='center' color='GrayText'>Registration Form</Typography>
+        <RegistrationForm atSend={atSend} validation={{
+          idCard: validateIdCard,
+          password: validatePassword,
+          name: validatePassword
+        }} />
+      </Container>
+
     );
   }
 }
 
-function atSend(data){
+function atSend(data) {
   console.log(data);
 }
 

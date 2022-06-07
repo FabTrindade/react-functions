@@ -1,6 +1,6 @@
 import { StepLabel, Stepper, Typography, Step } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import UserData from '../UserData';
+import UserData from './UserData';
 import AddressData from './AddressData';
 import PersonalData from './PersonalData';
 
@@ -15,7 +15,7 @@ function RegistrationForm({ atSend, validation }) {
         }
     })
     const forms = [
-        <UserData atSend={collectData} />,
+        <UserData atSend={collectData} validation={validation}/>,
         <PersonalData atSend={collectData} validation={validation} />,
         <AddressData atSend={collectData} />,
         <Typography variant='h5'>Thanks for signing up!</Typography>

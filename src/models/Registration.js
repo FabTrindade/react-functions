@@ -9,7 +9,7 @@ function validateIdCard(idCard) {
 
 function validatePassword(password) {
     if (password.length < 4 || password.length > 16) {
-        return { valid: false, text: "Password must have between 4 and 16 digits!" }
+        return { valid: false, text: "This field must have between 4 and 16 digits!" }
     } else {
         return { valid: true, text: "" }
     }
