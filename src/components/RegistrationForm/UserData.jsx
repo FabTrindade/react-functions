@@ -1,12 +1,15 @@
 import { Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import RegistrationValidations from '../../context/RegistrationValidations';
 
-function UserData({ atSend, validation }) {
+function UserData({ atSend}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState({
         password: { valid: true, text: "" },
     });
+
+    const validation = useContext(RegistrationValidations);
 
     function validateField(event) {
         const { name, value } = event.target;

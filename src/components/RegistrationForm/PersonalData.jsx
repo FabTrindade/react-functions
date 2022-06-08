@@ -1,7 +1,8 @@
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import RegistrationValidations from '../../context/RegistrationValidations';
 
-function PersonalData({ atSend, validation }) {
+function PersonalData({ atSend }) {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [idCard, setidCard] = useState("");
@@ -12,6 +13,7 @@ function PersonalData({ atSend, validation }) {
          name: { valid: true, text: "" }
         });
 
+    const validation = useContext(RegistrationValidations);
     function validateField(event) {
         const { name, value } = event.target;
         const newState = { ...error }
