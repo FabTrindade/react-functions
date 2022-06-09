@@ -5,27 +5,8 @@ import RegistrationValidations from '../../context/RegistrationValidations';
 function UserData({ atSend}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState({
-        password: { valid: true, text: "" },
-    });
-
     const validation = useContext(RegistrationValidations);
-
-    function validateField(event) {
-        const { name, value } = event.target;
-        const newState = { ...error }
-        newState[name] = validation[name](value);
-        setError(newState);
-    }
-
-    function canSend() {
-        for (let field in error) {
-            if (!error[field].valid) {
-                return false;
-            }
-        }
-        return true;
-    }
+    const [error, validateField, canSend] = useState(validation);    
 
     return (
         <form onSubmit={(event) => {

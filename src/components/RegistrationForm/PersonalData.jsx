@@ -1,6 +1,7 @@
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import RegistrationValidations from '../../context/RegistrationValidations';
+import useError from '../../hooks/useError';
 
 function PersonalData({ atSend }) {
     const [name, setName] = useState("");
@@ -8,28 +9,8 @@ function PersonalData({ atSend }) {
     const [idCard, setidCard] = useState("");
     const [promotions, setPromotions] = useState(false);
     const [newsLatter, setNewsLatter] = useState(false);
-    const [error, setError] = useState({
-         idCard: { valid: true, text: "" }, 
-         name: { valid: true, text: "" }
-        });
-
     const validation = useContext(RegistrationValidations);
-    function validateField(event) {
-        const { name, value } = event.target;
-        const newState = { ...error }
-        newState[name] = validation[name](value);
-        setError(newState);
-    }
-
-    function canSend() {
-        for (let field in error) {
-            if (!error[field].valid) {
-                return false;
-            }
-        }
-        return true;
-    }
-
+    const [error, validateField, canSend] = useError(validation);
     return (
         <form
             onSubmit={(event) => {
