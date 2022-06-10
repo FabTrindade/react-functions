@@ -1,12 +1,13 @@
 import { Button, TextField } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import RegistrationValidations from '../../context/RegistrationValidations';
+import useError from '../../hooks/useError';
 
-function UserData({ atSend}) {
+function UserData({ atSend }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const validation = useContext(RegistrationValidations);
-    const [error, validateField, canSend] = useState(validation);    
+    const [error, validateField, canSend] = useError(validation);
 
     return (
         <form onSubmit={(event) => {
@@ -14,7 +15,7 @@ function UserData({ atSend}) {
             if (canSend()) {
                 atSend({ email, password });
             }
-            
+
         }}>
             <TextField
                 value={email}
@@ -34,8 +35,8 @@ function UserData({ atSend}) {
                     setPassword(event.target.value);
                 }}
                 onBlur={validateField}
-                error = {!error.password.valid}
-                helperText = {error.password.text}
+                error={!error.password.valid}
+                helperText={error.password.text}
                 name='password'
                 id='password'
                 label='password'
